@@ -8,10 +8,10 @@ is below set threshold it turns on lamp and sets red color
 1. There are two ways to configure the Stock Alert service:
 when the user doesn't possess Wiz lamp, she or he must
 generate and fill in API key and select stock index.
-
-when the user possess Wiz lamp she or he must 
+When the user possess Wiz lamp she or he must 
 provide two additional fields: threshold under which 
 the alarm will be triggered and Wiz lamp (you can have multiple Wiz lamps)
+
 2. When service is configured the user can observe selected stock 
 data on the dashboard's widget and be notified about particular share
 drop by Wiz lamp. After 15 minutes when the share price will be higher 

@@ -1,0 +1,103 @@
+[
+    {
+        "name": "Apple",
+        "title": "AAPL",
+        "selectKey": "AAPL (Apple)"
+    },
+    {
+        "name": "Amazon",
+        "title": "AMZN",
+        "selectKey": "AMZN (Amazon)"
+    },
+    {
+        "name": "Microsoft",
+        "title": "MSFT",
+        "selectKey": "MSFT (Microsoft)"
+    },
+    {
+        "name": "Alphabet",
+        "title": "GOOG",
+        "selectKey": "GOOG (Alphabet)"
+    },
+    {
+        "name": "Facebook",
+        "title": "FB",
+        "selectKey": "FB (Facebook)"
+    },
+    {
+        "name": "Cisco Systems",
+        "title": "CSCO",
+        "selectKey": "CSCO (Cisco Systems)"
+    },
+    {
+        "name": "Intel",
+        "title": "INTC",
+        "selectKey": "INTC (Intel)"
+    },
+    {
+        "name": "Nvidia",
+        "title": "NVDA",
+        "selectKey": "NVDA (Nvidia)"
+    },
+    {
+        "name": "Comcast",
+        "title": "CMCSA",
+        "selectKey": "CMCSA (Comcast)"
+    },
+    {
+        "name": "Netflix",
+        "title": "NFLX",
+        "selectKey": "NFLX (Netflix)"
+    },
+    {
+        "name": "Amgen",
+        "title": "AMGN",
+        "selectKey": "AMGN (Amgen)"
+    },
+    {
+        "name": "Adobe Systems",
+        "title": "ADBE",
+        "selectKey": "ADBE (Adobe Systems)"
+    },
+    {
+        "name": "Qualcomm",
+        "title": "QCOM",
+        "selectKey": "QCOM (Qualcomm)"
+    },
+    {
+        "name": "Avago Technologies",
+        "title": "AVGO",
+        "selectKey": "AVGO (Avago Technologies)"
+    },
+    {
+        "name": "Costco Wholesale",
+        "title": "COST",
+        "selectKey": "COST (Costco Wholesale)"
+    },
+    {
+        "name": "Texas Instruments",
+        "title": "TXN",
+        "selectKey": "TXN (Texas Instruments)"
+    },
+    {
+        "name": "Gilead Sciences",
+        "title": "GILD",
+        "selectKey": "GILD (Gilead Sciences)"
+    },
+    {
+        "name": "Baidy",
+        "title": "BIDU",
+        "selectKey": "BIDU (Baidu)"
+    },
+    {
+        "name": "Starbucks",
+        "title": "SBUX",
+        "selectKey": "SBUX (Starbucks)"
+    },
+    {
+        "name": "Biogen",
+        "title": "BIIB",
+        "selectKey": "BIIB (Biogen)"
+    }
+]
+

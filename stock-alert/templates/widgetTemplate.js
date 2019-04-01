@@ -2,7 +2,7 @@ const {styles} = require('../css/styles.js');
 const {mui} = require('../css/mui.js');
 exports.widgetTemplate = function widgetTemplate(obj) {
     return `
-<div>
+<div class="widget-padding">
     <div class="mui-col-xs-12">
         <div class="mui-row">
             <div class="mui-col-xs-12">

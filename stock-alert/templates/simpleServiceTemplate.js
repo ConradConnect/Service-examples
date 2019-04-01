@@ -18,8 +18,8 @@ exports.serviceTemplate = function serviceTemplate(obj) {
                     ${obj.stockNames.map(item => `<option ${obj.inputs && obj.inputs.stockName === item.title ? 'selected' : ''} value="${item.title}">${item.selectKey}</option>`).join('')}
                 </select>
             </div>
-            ${obj.devices !== undefined && obj.devices.length !== 0  ? 
-                `<div>
+            ${obj.devices !== undefined && obj.devices.length !== 0  ?
+        `<div>
                     <p class="form-title">${obj.translations.amountTitle}</p>
                     <div class="mui-textfield custom ${obj.error.type === 'empty' || obj.error.type === 'threshold' ? 'form-error' : ''}">
                         <input name="threshold" type="text" placeholder="${obj.translations.amount}" value="${obj.inputs && obj.inputs.threshold ? obj.inputs.threshold : ''}">
@@ -32,16 +32,21 @@ exports.serviceTemplate = function serviceTemplate(obj) {
                         </select>
                     </div>
                 </div>`
-                :
-                `<p class="form-title">You have no supported devices. You can preview stock data on the widget in dashboard</p>`
-            }
+        :
+        `<p class="form-title">You have no supported devices. You can preview stock data on the widget in dashboard</p>`
+        }
                     
         </form>
     </div>
     <div class="preview mui-col-xs-12 mui-col-md-6 mui-col-md-offset-1">
         <div class="mui-row">
             <div class="mui-col-xs-12">
-                <p class="preview-summary">${obj.translations.summary}</p>
+                <p class="welcomeText">${obj.translations.refreshRateTitle}</p>
+                <p class="preview-summary">${obj.translations.refreshRate}</p>
+            </div>
+            <div class="mui-col-xs-12">
+                <p class="welcomeText">${obj.translations.lampNotificationTitle}</p>
+                <div class="popup-image"></div>
             </div>
         </div>
         <div class="mui-row">

@@ -25,8 +25,13 @@ class HandleCron {
         const devices = await mydaco.interface('IotCore', 'devices', {types: ['lamp']});
         const stock = await preferences.getPreferences(constants.WATCHED_STOCK_KEY);
         const data= await client.getStockQuote(stock.value);
+        if(data.hasOwnProperty("Note")) {
+            setTimeout(this.handleCron, 30000);
+            return;
+        }
 
         preferences.savePreferences(constants.WIDGET_DATA, data);
+        preferences.savePreferences(constants.CRON_DATE, new Date());
 
         if(devices !== undefined && devices.length !== 0) {
             const lowerThreshold = await preferences.getPreferences(constants.THRESHOLD_KEY);

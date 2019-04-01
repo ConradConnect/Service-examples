@@ -2,7 +2,7 @@ const mydaco = require('mydaco');
 const {serviceTemplate} = require('../templates/simpleServiceTemplate.js');
 const {widgetTemplate} = require('../templates/widgetTemplate.js');
 const {serviceConfiguredTemplate} = require('../templates/serviceConfiguredTemplate.js');
-const {unsubscribedWidgetTemplate} = require('../templates/unsubscribedWidgetTemplate.js');
+const {errorWidgetTemplate} = require('../templates/errorWidgetTemplate.js');
 const {titleTemplate} = require('../templates/titleTemplate.js');
 const Translations = require('./translations');
 const Validation = require('./validation');
@@ -103,34 +103,53 @@ class RenderTemplates {
 
     /**
      * It renders widget template
-     * @returns {Promise<{html: string, title: string}>}
+     * @returns {Promise<*>}
      */
     async renderWidget() {
         let obj = {};
         const preferences = new Preferences();
 
+        // Get data from KeyValueStore
         let company_name = await preferences.getPreferences(constants.COMPANY_NAME);
         let apiCall = await preferences.getPreferences(constants.WIDGET_DATA);
+        let collectionDate = await preferences.getPreferences(constants.CRON_DATE);
+
+        //Create title for widget
+        let date = collectionDate.value ? collectionDate.value : null;
+        let subTitle;
+        if(date) {
+            let dateObj = new Date(date);
+            let formattedDate = dateObj ? dateObj.toLocaleString() : null;
+            subTitle = 'Stock alert - ' + formattedDate;
+        } else {
+            subTitle = 'Stock Alert';
+        }
+
 
         if (Object.keys(company_name).length !== 0 && company_name.constructor === Object && Object.keys(apiCall).length !== 0 && apiCall.constructor === Object) {
             let apiCallValue = apiCall.value;
             let companyNameValue = company_name.value;
-            apiCallValue = apiCallValue['Global Quote'];
-            let body = {};
-            for (let key in apiCallValue) {
-                let formattedKey = key.slice(4);
-                body[formattedKey] = apiCallValue[key];
+            apiCallValue = apiCallValue['Global Quote'] ? apiCallValue['Global Quote'] : null;
+            if(apiCallValue) {
+                let body = {};
+                for (let key in apiCallValue) {
+                    let formattedKey = key.slice(4);
+                    body[formattedKey] = apiCallValue[key];
+                }
+
+                obj.translations = this.translations;
+                obj.company_name = companyNameValue;
+                obj.data = body;
+
+                let html = widgetTemplate(obj);
+                return {html, subTitle};
+            } else {
+                let html = errorWidgetTemplate(this.translations.noData);
+                return {html, subTitle};
             }
-
-            obj.translations = this.translations;
-            obj.company_name = companyNameValue;
-            obj.data = body;
-
-            let html = widgetTemplate(obj);
-            return {html, title};
         } else {
-            let html = unsubscribedWidgetTemplate(this.translations);
-            return {html, title};
+            let html = errorWidgetTemplate(this.translations.subscribeFirst);
+            return {html, subTitle};
         }
     }
 

@@ -10,6 +10,7 @@ exports.styles = `
       margin-top: 20px;
       margin-left: 5px;
       position: relative;
+      height: 100%;
   }
   .image-wrapper {
     height: 100%;
@@ -35,6 +36,9 @@ exports.styles = `
   }
   .label {
       color: #666666 !important;
+  }
+  .widget-padding {
+    padding-left: 10px;
   }
   .stock-form{ 
       margin-top: 30px;
@@ -107,10 +111,10 @@ exports.styles = `
     border-bottom: 1px solid #ff0000;
   }
   .color-green {
-    color: #66ff00;
+    color: #00CD6F;
   }
   .color-red {
-    color: #ff6600;  
+    color: #ff0000;  
   }
   .serviceConfiguredText{
       font-size: 24px;
@@ -134,5 +138,19 @@ exports.styles = `
     background-position: center;
     background-size: contain;
    }
+   .widgetError {
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+   }
+   .popup-image {
+    background: url('static/popupImg.png');
+    width: 100%;
+    height: 160px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
 </style>  
 `;

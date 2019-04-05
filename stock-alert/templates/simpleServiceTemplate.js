@@ -6,11 +6,6 @@ exports.serviceTemplate = function serviceTemplate(obj) {
     <div class="userInputs mui-col-xs-12 mui-col-md-5">
         <p class="welcomeText">${obj.translations.welcomeText}</p>
         <form class="mui-form stock-form">
-            <p class="form-title">${obj.translations.apiKeyTitle}</p>
-            <div class="mui-textfield ${obj.error.type === 'empty' ? 'form-error' : ''} custom">
-                <input name="apiKey" type="text" value="${obj.inputs && obj.inputs.apiKey ? obj.inputs.apiKey : ''}" placeholder="${obj.translations.apiKey}">
-                <a class="api-key" href="https://www.alphavantage.co/support/#api-key" target="_blank">${obj.translations.apiKeyLink}</a>
-            </div>
             <p class="form-title custom-margin">${obj.translations.companyIndexTitle}</p>
             <div class="mui-select custom ${obj.error.type === 'empty' ? 'form-error' : ''}">
                 <select name="stockName" class="label">
@@ -26,14 +21,14 @@ exports.serviceTemplate = function serviceTemplate(obj) {
                     </div>
                     <p class="form-title">${obj.translations.devicesTitle}</p>
                     <div class="mui-select custom ${obj.error.type === 'empty' ? 'form-error' : ''}">
-                        <select name="device" class="label">
-                        <option value="" disabled selected>${obj.translations.device}</option>
-                        ${obj.devices && obj.devices.map(item => `<option ${obj.inputs && obj.inputs.device === item.id ? 'selected' : ''} value="${item.id}">${item.name}</option>`).join('')}
+                        <select name="selectedLamp" class="label">
+                        <option value="notSelected" selected>${obj.translations.device}</option>
+                        ${obj.devices && obj.devices.map(item => `<option ${obj.inputs && obj.inputs.selectedLamp === item.id ? 'selected' : ''} value="${item.id}">${item.name}</option>`).join('')}
                         </select>
                     </div>
                 </div>`
         :
-        `<p class="form-title">You have no supported devices. You can preview stock data on the widget in dashboard</p>`
+        `<p class="form-title">${obj.translations.lackDevices ? obj.translations.lackDevices : ''}</p>`
         }
                     
         </form>
@@ -46,6 +41,7 @@ exports.serviceTemplate = function serviceTemplate(obj) {
             </div>
             <div class="mui-col-xs-12">
                 <p class="welcomeText">${obj.translations.lampNotificationTitle}</p>
+                <p class="preview-summary">${obj.translations.lampNotificationContent}</p>
                 <div class="popup-image"></div>
             </div>
         </div>

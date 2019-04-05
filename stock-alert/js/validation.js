@@ -21,7 +21,7 @@ class Validation {
     validateStockForm(inputs, translations) {
         let error = {};
 
-        if(inputs === undefined || (inputs.threshold !== undefined && inputs.threshold !== null && inputs.threshold === '') || !inputs.stockName || !inputs.apiKey) {
+        if(inputs === undefined || (inputs.threshold !== undefined && inputs.threshold !== null && inputs.threshold === '') || !inputs.stockName || inputs.selectedLamp === "notSelected") {
             error.type = 'empty';
             error.message = translations.inputsError;
             return error;

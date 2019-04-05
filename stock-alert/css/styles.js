@@ -7,10 +7,8 @@ exports.styles = `
       height: calc(100% - 50px);
   }
   .main-wrapper {
-      margin-top: 20px;
       margin-left: 5px;
       position: relative;
-      height: 100%;
   }
   .image-wrapper {
     height: 100%;

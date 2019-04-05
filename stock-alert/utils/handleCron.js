@@ -2,6 +2,7 @@ const mydaco = require('mydaco');
 const StockClient = require('../js/stockClient');
 const Preferences = require('./preferences.js');
 const constants = require('./constants');
+const moment = require('moment');
 
 class HandleCron {
 
@@ -24,20 +25,16 @@ class HandleCron {
 
         const devices = await mydaco.interface('IotCore', 'devices', {types: ['lamp']});
         const stock = await preferences.getPreferences(constants.WATCHED_STOCK_KEY);
-        const data= await client.getStockQuote(stock.value);
-        if(data.hasOwnProperty("Note")) {
-            setTimeout(this.handleCron, 30000);
-            return;
-        }
+        const currentData = await client.getStockData(stock.value);
 
-        preferences.savePreferences(constants.WIDGET_DATA, data);
-        preferences.savePreferences(constants.CRON_DATE, new Date());
+        preferences.savePreferences(constants.WIDGET_DATA, currentData);
+        preferences.savePreferences(constants.CRON_DATE, moment().unix());
 
-        if(devices !== undefined && devices.length !== 0) {
+        if (devices !== undefined && devices.length !== 0) {
             const lowerThreshold = await preferences.getPreferences(constants.THRESHOLD_KEY);
             const floatThreshold = parseFloat(lowerThreshold.value);
 
-            const floatPrice = parseFloat(data['Global Quote']['05. price']);
+            const floatPrice = parseFloat(currentData['latestPrice']);
 
             const lampId = await preferences.getPreferences(constants.LAMP_SELECTED);
 
@@ -50,7 +47,7 @@ class HandleCron {
                 await mydaco.interface('IotCore', 'actuate', properties);
 
                 const colorProperties = {
-                    device:lampId.value,
+                    device: lampId.value,
                     property: 'color',
                     value: '#FF0000'
                 };

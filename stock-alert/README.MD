@@ -28,11 +28,11 @@ It also use IoTCore to get user devices and actuate selected lamp
 
 
 # External resources 
-It makes call to external API https://www.alphavantage.co/documentation/ to get 
+It makes call to external API https://docs.alpaca.markets/api-documentation/ to get 
 latest stock data
     
 	
 # Limitations / requirements of usage
 You need to have Wiz lamp
-You need to generate unique API key at https://www.alphavantage.co/support/#api-key
+
 You need to have installed npm packages: Joi

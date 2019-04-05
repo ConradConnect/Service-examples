@@ -16,7 +16,7 @@ exports.main = async function main(params) {
 
     if (params.inter === 'ServiceMarketplace' && params.func === 'interact') {
         const { inputs } = params.params;
-        return await templates.renderConfigInteract(inputs);
+        return await templates.renderServiceInteract(inputs);
     }
 
     if (params.inter === 'Widget') {

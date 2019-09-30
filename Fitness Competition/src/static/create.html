@@ -1,0 +1,115 @@
+<style>
+	@media (min-width: 600px) {
+		.create-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 30px;
+			width: 100%;
+			margin-top: 15px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	@media (max-width: 599px) {
+		.create-grid {
+			display: block;
+			margin-top: 15px;
+		}
+
+		.create-grid>*:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 10px;
+		}
+	}
+
+
+	.create-grid-description {
+		grid-row: 1 / span 2;
+		grid-column-start: 2;
+	}
+
+	.create-device-selection {
+		/* grid-column: 1 / span 2; */
+	}
+
+	.create-email-list {
+		grid-column: span 2;
+	}
+
+	.create-range {
+		/* grid-column: 1 / span 2; */
+		/* text-align: center; */
+	}
+</style>
+
+<mdc-form endpoint="createCompetition" validate>
+	<mdc-service-layout>
+		<div slot="content">
+			<div class="pageTitle">
+				{{create-title}}
+			</div>
+			<div class="pageDescription">
+				{{create-description}}
+			</div>
+
+			<div class="create-grid">
+
+				<mdc-input required error-message="{{create-name-errorMessage}}" name="competitionName" type="text"
+					label="{{create-name-label}}" placeholder-label></mdc-input>
+
+				<mdc-input name="description" type="text" label="{{create-description-label}}" fill-height textarea
+					placeholder-label class="create-grid-description"></mdc-input>
+
+				<mdc-input required error-message="{{create-admin-errorMessage}}" name="personName" persist="r"
+					type="text" label="{{create-admin-label}}" placeholder-label></mdc-input>
+
+				<mdc-datetime-picker-range required max-days="80" in-future error-message="{{create-date-errorMessage}}"
+					class="create-range" name="competitionRange" start-label="{{create-from-label}}"
+					end-label="{{create-to-label}}" start-label-time="{{create-from-label-time}}"
+					locale="{{locale-key}}" end-label-time="{{create-to-label-time}}" modus="datetime"
+					init-time-start="00:00" init-start-date-now="1" init-time-end="23:59" relative-size-date="0.7">
+				</mdc-datetime-picker-range>
+
+				<mdc-device-selection required select-if-only-one persist="r" radio name="deviceId"
+					no-device-error="{{global-nodevice-error}}" properties="['steps']" label="{{create-device-label}}"
+					class="create-device-selection" loading-text="{{devices-loading}}">
+				</mdc-device-selection>
+
+				<mdc-input-list label="{{create-invite-email-label}}" name="emails" delimiter=" "
+					class="create-email-list" max-list-height="90px">
+				</mdc-input-list>
+
+			</div>
+
+			<mdc-form-success redirect="createDoneView">
+			</mdc-form-success>
+
+			<mdc-form-error>
+				<mdc-form-error-translate key="End date needs to be in the future">
+					{{create-endDate-error}}
+				</mdc-form-error-translate>
+				{{create-default-error}}
+			</mdc-form-error>
+
+			<mdc-form-submitting>
+				{{create-is-submitting}}
+			</mdc-form-submitting>
+		</div>
+
+		</div>
+		<div slot="footer">
+			<div class="button-wrapper">
+				<mdc-service-page-navigation page="mainView" class="button50">
+					<mdc-button type="gray" label="{{create-back}}"></mdc-button>
+				</mdc-service-page-navigation>
+
+				<mdc-form-submit class="button50">
+					<mdc-button type="next" label="{{create-submit}}"></mdc-button>
+				</mdc-form-submit>
+			</div>
+		</div>
+	</mdc-service-layout>
+</mdc-form>

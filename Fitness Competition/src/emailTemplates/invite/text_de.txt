@@ -1,0 +1,1 @@
+Sie wurden zum Wettbewerb {{competitionName}} eingeladen. Ihr Teilnahmeschlüssel ist {{inviteKey}} 

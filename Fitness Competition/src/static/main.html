@@ -1,0 +1,657 @@
+<style>
+	.compTable {
+		margin-top: 20px !important;
+	}
+
+	@media (max-width: 599px) {
+		.compTable {
+			/* hack for safari */
+			max-width: 200px;
+		}
+	}
+
+	.clickableRow {
+		cursor: pointer;
+	}
+
+	.adminIcon {
+		border: none;
+		background-color: transparent;
+	}
+
+	.actionIcon {
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+	}
+
+	.free-space-main-wrapper {
+		display: flex;
+		min-height: 100%;
+		align-items: flex-end;
+	}
+
+	.imageWrapper {
+		display: flex;
+		justify-content: space-evenly;
+		text-align: center;
+	}
+
+	.imageWrapper>* {
+		flex-basis: 30%;
+		object-fit: contain;
+	}
+</style>
+
+<mdc-service-layout>
+	<div slot="content">
+		<div class="pageTitle">
+			{{main-title}}
+		</div>
+		<div class="pageDescription">
+			{{main-description}}
+		</div>
+
+
+		<mdc-form endpoint="deleteCompetition" listen-for-event>
+			<mdc-confirm-dialog header="{{delete-confirmation-header}}" text-cancel="{{delete-confirmation-cancel}}"
+				text-ok="{{delete-confirmation-ok}}" button-type-cancel="next" button-type-ok="red">
+				{{delete-confirmation-message}}
+			</mdc-confirm-dialog>
+			<mdc-form-success redirect="mainView" force-reload>
+				{{delete-success-message}}
+			</mdc-form-success>
+			<mdc-form-error>
+				{{delete-default-error}}
+			</mdc-form-error>
+
+			<mdc-form endpoint="leaveCompetition" listen-for-event>
+				<mdc-confirm-dialog header="{{leave-confirmation-header}}" text-cancel="{{leave-confirmation-cancel}}"
+					text-ok="{{leave-confirmation-ok}}" button-type-cancel="next" button-type-ok="red">
+					{{leave-confirmation-message}}
+				</mdc-confirm-dialog>
+				<mdc-form-success redirect="mainView" force-reload>
+					{{leave-success-message}}
+				</mdc-form-success>
+				<mdc-form-error>
+					{{leave-default-error}}
+				</mdc-form-error>
+
+				<mdc-service-page-navigation page="detailView" listen-for-event>
+					<mdc-tabs>
+						<mdc-tab name="{{main-comp-running}}">
+							<table class="compTable ui very basic table unstackable">
+								<thead>
+									<tr>
+										<th></th>
+										<th>{{main-tableHeadline-name}}</th>
+										<th>{{main-tableHeadline-start}}</th>
+										<th>{{main-tableHeadline-end}}</th>
+										<th>{{main-tableHeadline-numberCompetitors}}</th>
+										<th>{{main-tableHeadline-actionCell}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%=#each competitions.running%>
+									<tr onclick="goToCompetition(this, '<%=id%>')" class="clickableRow">
+										<td class="collapsing">
+											<%=#if isAdmin%>
+											<button class="adminIcon" title="{{main-you-are-admin}}">
+												<svg xmlns="http://www.w3.org/2000/svg" width="12.651" height="13.88" viewBox="0 0 12.651 13.88">
+													<path id="Union_25" data-name="Union 25" d="M3374.325-226.121h0v0c-.236-.06-6.724-1.8-6.3-11.859,3.023.221,6.141-1.9,6.3-2.014v0l0,0,0,0v0c.161.111,3.28,2.236,6.3,2.014.421,10.06-6.067,11.8-6.3,11.859v0Z" transform="translate(-3368 240)" fill="#707070"/>
+												</svg>
+											</button>
+											<%=/if%>
+										</td>
+										<td>
+											<%=competitionName%>
+										</td>
+										<td>
+											{{global-starts}} <mdc-datetime-display date-time="<%=start%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											{{global-ends}} <mdc-datetime-display date-time="<%=end%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											<%=personNames.length%>
+										</td>
+										<td>
+											<%=#if isAdmin%>
+											<button class="actionIcon" title="{{main-delete-button}}" onclick="deleteCompetition(event, this, '<%=id%>')">
+												<svg xmlns="http://www.w3.org/2000/svg" width="7.778" height="10" viewBox="0 0 7.778 10">
+													<path id="ic_delete_24px" d="M5.556,11.889A1.114,1.114,0,0,0,6.667,13h4.444a1.114,1.114,0,0,0,1.111-1.111V5.222H5.556Zm7.222-8.333H10.833L10.278,3H7.5l-.556.556H5V4.667h7.778Z" transform="translate(-5 -3)"/>
+												</svg>
+											</button>
+											<%=else%>
+											<button class="actionIcon" title="{{main-leave-button}}" onclick="leaveCompetition(event, this, '<%=id%>')">
+												<svg xmlns="http://www.w3.org/2000/svg" width="11.539" height="10" viewBox="0 0 11.539 10">
+													<g id="Group_1153" data-name="Group 1153" transform="translate(-515.737 -236)">
+														<path id="ic_open_in_browser_24px" d="M8.889,0H1.111A1.111,1.111,0,0,0,0,1.111V7.778A1.111,1.111,0,0,0,1.111,8.889H3.333V7.778H1.111V2.222H8.889V7.778H6.667V8.889H8.889A1.114,1.114,0,0,0,10,7.778V1.111A1.111,1.111,0,0,0,8.889,0Z" transform="translate(515.737 246) rotate(-90)"/>
+														<path id="ic_open_in_browser_24px-2" data-name="ic_open_in_browser_24px" d="M2.152,0,0,2.152H1.614V5.381H2.69V2.152H4.3Z" transform="translate(527.277 238.848) rotate(90)"/>
+													</g>
+												</svg>
+											</button>
+											<%=/if%>
+										</td>
+									</tr>
+									<%=else%>
+									<tr>
+										<td></td>
+										<td colspan="5">{{main-comp-norunning}}</td>
+									</tr>
+									<%=/each%>
+								</tbody>
+							</table>
+						</mdc-tab>
+
+						<mdc-tab name="{{main-comp-preparation}}">
+							<table class="compTable ui very basic table unstackable">
+								<thead>
+									<tr>
+										<th></th>
+										<th>{{main-tableHeadline-name}}</th>
+										<th>{{main-tableHeadline-start}}</th>
+										<th>{{main-tableHeadline-end}}</th>
+										<th>{{main-tableHeadline-numberCompetitors}}</th>
+										<th>{{main-tableHeadline-actionCell}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%=#each competitions.inPreparation%>
+									<tr onclick="goToCompetition(this, '<%=id%>')" class="clickableRow">
+										<td class="collapsing">
+											<%=#if isAdmin%>
+											<button class="adminIcon" title="{{main-you-are-admin}}">
+												<svg xmlns="http://www.w3.org/2000/svg" width="12.651" height="13.88" viewBox="0 0 12.651 13.88">
+													<path id="Union_25" data-name="Union 25" d="M3374.325-226.121h0v0c-.236-.06-6.724-1.8-6.3-11.859,3.023.221,6.141-1.9,6.3-2.014v0l0,0,0,0v0c.161.111,3.28,2.236,6.3,2.014.421,10.06-6.067,11.8-6.3,11.859v0Z" transform="translate(-3368 240)" fill="#707070"/>
+												</svg>
+											</button>
+											<%=/if%>
+										</td>
+										<td>
+											<%=competitionName%>
+										</td>
+										<td>
+											Starts <mdc-datetime-display date-time="<%=start%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											Ends <mdc-datetime-display date-time="<%=end%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											<%=personNames.length%>
+										</td>
+										<td>
+											<%=#if isAdmin%>
+											<button class="actionIcon" title="{{main-delete-button}}" onclick="deleteCompetition(event, this, '<%=id%>')">
+												<svg xmlns="http://www.w3.org/2000/svg" width="7.778" height="10" viewBox="0 0 7.778 10">
+													<path id="ic_delete_24px" d="M5.556,11.889A1.114,1.114,0,0,0,6.667,13h4.444a1.114,1.114,0,0,0,1.111-1.111V5.222H5.556Zm7.222-8.333H10.833L10.278,3H7.5l-.556.556H5V4.667h7.778Z" transform="translate(-5 -3)"/>
+												</svg>
+											</button>
+											<%=else%>
+											<button class="actionIcon" title="{{main-leave-button}}" onclick="leaveCompetition(event, this, '<%=id%>')">
+												<svg xmlns="http://www.w3.org/2000/svg" width="11.539" height="10" viewBox="0 0 11.539 10">
+													<g id="Group_1153" data-name="Group 1153" transform="translate(-515.737 -236)">
+														<path id="ic_open_in_browser_24px" d="M8.889,0H1.111A1.111,1.111,0,0,0,0,1.111V7.778A1.111,1.111,0,0,0,1.111,8.889H3.333V7.778H1.111V2.222H8.889V7.778H6.667V8.889H8.889A1.114,1.114,0,0,0,10,7.778V1.111A1.111,1.111,0,0,0,8.889,0Z" transform="translate(515.737 246) rotate(-90)"/>
+														<path id="ic_open_in_browser_24px-2" data-name="ic_open_in_browser_24px" d="M2.152,0,0,2.152H1.614V5.381H2.69V2.152H4.3Z" transform="translate(527.277 238.848) rotate(90)"/>
+													</g>
+												</svg>
+											</button>
+											<%=/if%>
+										</td>
+									</tr>
+									<%=else%>
+									<tr>
+										<td></td>
+										<td colspan="5">{{main-comp-nopreparation}}</td>
+									</tr>
+									<%=/each%>
+								</tbody>
+							</table>
+						</mdc-tab>
+
+						<mdc-tab name="{{main-comp-finished}}">
+							<table class="compTable ui very basic table unstackable">
+								<thead>
+									<tr>
+										<th></th>
+										<th>{{main-tableHeadline-name}}</th>
+										<th>{{main-tableHeadline-start}}</th>
+										<th>{{main-tableHeadline-end}}</th>
+										<th>{{main-tableHeadline-numberCompetitors}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%=#each competitions.finished%>
+									<tr onclick="goToCompetition(this, '<%=id%>')" class="clickableRow">
+										<td class="collapsing">
+											<%=#if isAdmin%>
+											<button class="adminIcon" title="{{main-you-are-admin}}">
+												<svg xmlns="http://www.w3.org/2000/svg" width="12.651" height="13.88" viewBox="0 0 12.651 13.88">
+													<path id="Union_25" data-name="Union 25" d="M3374.325-226.121h0v0c-.236-.06-6.724-1.8-6.3-11.859,3.023.221,6.141-1.9,6.3-2.014v0l0,0,0,0v0c.161.111,3.28,2.236,6.3,2.014.421,10.06-6.067,11.8-6.3,11.859v0Z" transform="translate(-3368 240)" fill="#707070"/>
+												</svg>
+											</button>
+											<%=/if%>
+										</td>
+										<td>
+											<%=competitionName%>
+										</td>
+										<td>
+											Starts <mdc-datetime-display date-time="<%=start%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											Ends <mdc-datetime-display date-time="<%=end%>">
+											</mdc-datetime-display>
+										</td>
+										<td>
+											<%=personNames.length%>
+										</td>
+									</tr>
+									<%=else%>
+									<tr>
+										<td></td>
+										<td colspan="4">{{main-comp-nofinished}}</td>
+									</tr>
+									<%=/each%>
+								</tbody>
+							</table>
+						</mdc-tab>
+					</mdc-tabs>
+				</mdc-service-page-navigation>
+			</mdc-form>
+		</mdc-form>
+
+
+		<mdc-hidden sm-down>
+			<div style="text-align:center;">
+				<img src="static/images/fc_start.png" alt="Start competition"/>
+				<mdc-service-page-navigation page="createView">
+					<mdc-button type="next" label="{{main-create-competition}}"></mdc-button>
+				</mdc-service-page-navigation>
+
+
+				<img src="static/images/fc_join.png" alt="Join competition"/>
+				<mdc-service-page-navigation page="joinView">
+					<mdc-button type="next" label="{{main-join-competition}}"></mdc-button>
+				</mdc-service-page-navigation>
+
+				<img src="static/images/fc_edit.png" alt="Edit settings"/>
+				<mdc-service-page-navigation page="settingsView">
+					<mdc-button type="blue" label="{{main-settings}}"></mdc-button>
+				</mdc-service-page-navigation>
+			</div>
+		</mdc-hidden>
+
+
+	</div>
+
+	<div slot="free-space" class="free-space-main-wrapper">
+
+		<mdc-hidden sm-up style="flex:1;">
+			<div class="imageWrapper">
+				<img src="static/images/fc_start.png" alt="Start competition"/>
+				<img src="static/images/fc_join.png" alt="Join competition"/>
+				<img src="static/images/fc_edit.png" alt="Edit settings"/>
+			</div>
+		</mdc-hidden>
+
+	</div>
+
+	<div slot="footer">
+		<mdc-hidden sm-up>
+			<div class="button-wrapper">
+				<mdc-service-page-navigation page="createView" class="button30">
+					<mdc-button type="next" label="{{main-create-competition}}"></mdc-button>
+				</mdc-service-page-navigation>
+				<mdc-service-page-navigation page="joinView" class="button30">
+					<mdc-button type="next" label="{{main-join-competition}}"></mdc-button>
+				</mdc-service-page-navigation>
+				<mdc-service-page-navigation page="settingsView" class="button30">
+					<mdc-button type="blue" label="{{main-settings}}"></mdc-button>
+				</mdc-service-page-navigation>
+			</div>
+		</mdc-hidden>
+	</div>
+</mdc-service-layout>
+
+<style>
+	*,
+	:after,
+	:before {
+		-webkit-box-sizing: inherit;
+		box-sizing: inherit;
+	}
+
+	img {
+		border-style: none;
+	}
+
+	h4 {
+		font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		line-height: 1.28571429em;
+		margin: calc(2rem - .14285714em) 0 1rem;
+		font-weight: 700;
+		padding: 0;
+	}
+
+	h4 {
+		font-size: 1.07142857rem;
+	}
+
+	h4:first-child {
+		margin-top: 0;
+	}
+
+	h4:last-child {
+		margin-bottom: 0;
+	}
+
+	::-webkit-selection {
+		background-color: #cce2ff;
+		color: rgba(0, 0, 0, .87);
+	}
+
+	::-moz-selection {
+		background-color: #cce2ff;
+		color: rgba(0, 0, 0, .87);
+	}
+
+	::selection {
+		background-color: #cce2ff;
+		color: rgba(0, 0, 0, .87);
+	}
+
+	body ::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 10px;
+		height: 10px;
+	}
+
+	body ::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, .1);
+		border-radius: 0;
+	}
+
+	body ::-webkit-scrollbar-thumb {
+		cursor: pointer;
+		border-radius: 5px;
+		background: rgba(0, 0, 0, .25);
+		-webkit-transition: color .2s ease;
+		transition: color .2s ease;
+	}
+
+	body ::-webkit-scrollbar-thumb:hover {
+		background: rgba(128, 135, 139, .8);
+	}
+
+	.ui.header {
+		border: none;
+		margin: calc(2rem - .14285714em) 0 1rem;
+		padding: 0 0;
+		font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		font-weight: 700;
+		line-height: 1.28571429em;
+		text-transform: none;
+		color: rgba(0, 0, 0, .87);
+	}
+
+	.ui.header:first-child {
+		margin-top: -.14285714em;
+	}
+
+	.ui.header:last-child {
+		margin-bottom: 0;
+	}
+
+	.ui.header .sub.header {
+		display: block;
+		font-weight: 400;
+		padding: 0;
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.2em;
+		color: rgba(0, 0, 0, .6);
+	}
+
+	.ui.header>.image:not(.icon),
+	.ui.header>img {
+		display: inline-block;
+		margin-top: .14285714em;
+		width: 2.5em;
+		height: auto;
+		vertical-align: middle;
+	}
+
+	.ui.header .content {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.ui.header>.image+.content,
+	.ui.header>img+.content {
+		padding-left: .75rem;
+		vertical-align: middle;
+	}
+
+	h4.ui.header {
+		font-size: 1.07142857rem;
+	}
+
+	h4.ui.header .sub.header {
+		font-size: 1rem;
+	}
+
+	.ui.header .sub.header {
+		font-size: 1rem;
+	}
+
+	.ui.image {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		max-width: 100%;
+		background-color: transparent;
+	}
+
+	img.ui.image {
+		display: block;
+	}
+
+	.ui.image img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	.ui.rounded.image {
+		border-radius: .3125em;
+	}
+
+	.ui.mini.image {
+		width: 35px;
+		height: auto;
+		font-size: .78571429rem;
+	}
+
+	.ui.table {
+		width: 100%;
+		background: #fff;
+		margin: 1em 0;
+		border: 1px solid rgba(34, 36, 38, .15);
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border-radius: .28571429rem;
+		text-align: left;
+		color: rgba(0, 0, 0, .87);
+		border-collapse: separate;
+		border-spacing: 0;
+	}
+
+	.ui.table:first-child {
+		margin-top: 0;
+	}
+
+	.ui.table td,
+	.ui.table th {
+		-webkit-transition: background .1s ease, color .1s ease;
+		transition: background .1s ease, color .1s ease;
+	}
+
+	.ui.table thead {
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.ui.table thead th {
+		cursor: auto;
+		background: #f9fafb;
+		text-align: inherit;
+		color: rgba(0, 0, 0, .87);
+		padding: .92857143em .78571429em;
+		vertical-align: inherit;
+		font-style: none;
+		font-weight: 700;
+		text-transform: none;
+		border-bottom: 1px solid rgba(34, 36, 38, .1);
+		border-left: none;
+	}
+
+	.ui.table thead tr>th:first-child {
+		border-left: none;
+	}
+
+	.ui.table thead tr:first-child>th:first-child {
+		border-radius: .28571429rem 0 0 0;
+	}
+
+	.ui.table thead tr:first-child>th:last-child {
+		border-radius: 0 .28571429rem 0 0;
+	}
+
+	.ui.table tr td {
+		border-top: 1px solid rgba(34, 36, 38, .1);
+	}
+
+	.ui.table tr:first-child td {
+		border-top: none;
+	}
+
+	.ui.table td {
+		padding: .78571429em .78571429em;
+		text-align: inherit;
+	}
+
+	.ui.table td.collapsing,
+	.ui.table th.collapsing {
+		width: 1px;
+		white-space: nowrap;
+	}
+
+	@media only screen and (max-width:767px) {
+		.ui.table:not(.unstackable) {
+			width: 100%;
+		}
+
+		.ui.table:not(.unstackable) tbody,
+		.ui.table:not(.unstackable) tr,
+		.ui.table:not(.unstackable) tr>td,
+		.ui.table:not(.unstackable) tr>th {
+			width: auto !important;
+			display: block !important;
+		}
+
+		.ui.table:not(.unstackable) {
+			padding: 0;
+		}
+
+		.ui.table:not(.unstackable) thead {
+			display: block;
+		}
+
+		.ui.table:not(.unstackable) tr {
+			padding-top: 1em;
+			padding-bottom: 1em;
+			-webkit-box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .1) inset !important;
+			box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .1) inset !important;
+		}
+
+		.ui.table:not(.unstackable) tr>td,
+		.ui.table:not(.unstackable) tr>th {
+			background: 0 0;
+			border: none !important;
+			padding: .25em .75em !important;
+			-webkit-box-shadow: none !important;
+			box-shadow: none !important;
+		}
+
+		.ui.table:not(.unstackable) td:first-child,
+		.ui.table:not(.unstackable) th:first-child {
+			font-weight: 700;
+		}
+	}
+
+	.ui.table td .image,
+	.ui.table td .image img {
+		max-width: none;
+	}
+
+	.ui.collapsing.table {
+		width: auto;
+	}
+
+	.ui.basic.table {
+		background: 0 0;
+		border: 1px solid rgba(34, 36, 38, .15);
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.ui.basic.table thead {
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.ui.basic.table th {
+		background: 0 0;
+		border-left: none;
+	}
+
+	.ui.basic.table tbody tr {
+		border-bottom: 1px solid rgba(0, 0, 0, .1);
+	}
+
+	.ui.basic.table td {
+		background: 0 0;
+	}
+
+	.ui[class*="very basic"].table {
+		border: none;
+	}
+
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) td,
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) th {
+		padding: '';
+	}
+
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) td:first-child,
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) th:first-child {
+		padding-left: 0;
+	}
+
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) td:last-child,
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) th:last-child {
+		padding-right: 0;
+	}
+
+	.ui[class*="very basic"].table:not(.sortable):not(.striped) thead tr:first-child th {
+		padding-top: 0;
+	}
+
+	.ui.table {
+		font-size: 1em;
+	}
+</style>

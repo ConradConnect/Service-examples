@@ -1,0 +1,16 @@
+<svg id="Group_1181" data-name="Group 1181" xmlns="http://www.w3.org/2000/svg" width="10.241" height="14.238" viewBox="0 0 10.241 14.238">
+  <g id="Group_509" data-name="Group 509" transform="translate(0 4.067)">
+    <g id="Group_508" data-name="Group 508" transform="translate(4.123 0.023)">
+      <path id="Path_84" data-name="Path 84" d="M.527,6.841H3.162L3.689,0,1.845,1.231,0,0Z" transform="matrix(-0.966, 0.259, -0.259, -0.966, 5.334, 6.608)" fill="#707070"/>
+      <path id="Subtraction_14" data-name="Subtraction 14" d="M0,3.014v0l.14-1.8L1.958,0l1.82,1.215.138,1.8L1.958,1.706,0,3.013Z" transform="matrix(0.966, -0.259, 0.259, 0.966, 1.555, 7.237)" fill="#707070"/>
+    </g>
+    <g id="Group_507" data-name="Group 507" transform="translate(0 0)">
+      <path id="Path_89" data-name="Path 89" d="M.527,6.841H3.162L3.689,0,1.845,1.231,0,0Z" transform="matrix(-0.966, -0.259, 0.259, -0.966, 4.368, 7.562)" fill="#707070"/>
+      <path id="Subtraction_15" data-name="Subtraction 15" d="M0,3.014v0l.14-1.8L1.958,0l1.82,1.215.138,1.8L1.958,1.706,0,3.013Z" transform="matrix(0.966, 0.259, -0.259, 0.966, 0.78, 6.218)" fill="#707070"/>
+    </g>
+  </g>
+  <g id="Ellipse_18" data-name="Ellipse 18" transform="translate(0.73)" fill="#f8d576" stroke="#707070" stroke-width="2">
+    <ellipse cx="4.216" cy="4.216" rx="4.216" ry="4.216" stroke="none"/>
+    <ellipse cx="4.216" cy="4.216" rx="3.216" ry="3.216" fill="none"/>
+  </g>
+</svg>

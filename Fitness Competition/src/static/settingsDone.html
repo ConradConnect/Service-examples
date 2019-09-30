@@ -1,0 +1,33 @@
+<style>
+	.showSuccessImage {
+		text-align: center;
+		margin-top: 20px;
+	}
+</style>
+
+<mdc-service-layout>
+	<div slot="content">
+		<div class="pageTitle">
+			{{settingsDone-title}}
+		</div>
+		<div class="pageDescription">
+			{{settingsDone-description}}
+		</div>
+	</div>
+
+	<div slot="free-space" class="free-space-center-wrapper">
+
+		<div class="showSuccessImage">
+			<img src="static/images/fc_confirmation.png" alt="Success" width="200px"/>
+		</div>
+
+	</div>
+	
+	<div slot="footer">
+		<div class="button-wrapper">
+			<mdc-service-page-navigation page="mainView" class="button100">
+				<mdc-button type="next" label="{{settings-go-to-main}}"></mdc-button>
+			</mdc-service-page-navigation>
+		</div>
+	</div>
+</mdc-service-layout>

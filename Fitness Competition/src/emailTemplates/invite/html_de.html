@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xht=
+ml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Ihre Fitness Wettbewerb Einladung</title>
+
+  <style type="text/css">
+    .invoice-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 16px;
+      line-height: 24px;
+      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      color: #555;
+    }
+
+    .invoice-box table {
+      width: 100%;
+      line-height: inherit;
+      text-align: left;
+    }
+
+    .invoice-box table td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .invoice-box table tr.top table td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+      font-size: 45px;
+      line-height: 45px;
+      color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+      padding-bottom: 40px;
+      padding-top: 20px;
+    }
+
+    .invoice-box .divider {
+      margin-top: 150px;
+    }
+
+    .invoice-box table tr.disclaimer table td {
+      font-size: 12px;
+      color: lightgray;
+      padding-bottom: 20px;
+      padding-top: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+      border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.total td:nth-child(3) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+
+    tr.footer td {
+      background: #eee;
+      border-top: 1px solid #ddd;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.disclaimer table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    .rtl {
+      direction: rtl;
+      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+
+    .rtl table {
+      text-align: right;
+    }
+
+    .rtl table tr td:nth-child(2) {
+      text-align: left;
+    }
+
+    .btn {
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 400;
+      color: #212529;
+      text-align: center;
+      vertical-align: middle;
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    a.btn-conrad {
+      color: #fffffe !important;
+      background-color: #0098dd;
+      border-color: #0098dd;
+      text-decoration: none;
+    }
+
+    a.btn-register {
+      color: #fffffe !important;
+      border-color: #00cd6f;
+      text-decoration: none;
+      background-color: #00cd6f;
+    }
+
+    .btn.btn-wide {
+      width: 350px;
+    }
+
+    .invite-key {
+      background-color: rgb(223, 223, 223);
+      padding: 10px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <img
+                  src="{{staticUrl}}images/CCLogo.png"
+                  style="width:100%; max-width:300px;" alt="Conrad Connect">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <img
+                  src="{{staticUrl}}images/fc_logo.png"
+                  style="width:100%; max-width:300px;" alt="Fitness wettbewerb">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                Hallo,
+                <br><br>
+                <b>{{competitionAdminName}}</b> lädt Sie ein an dem Fitness Wettbewerb <b>{{competitionName}}</b> teilzunehmen. Sie können mit folgendem Schlüssel beitreten:
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <p style="text-align: center">
+            <span class="invite-key">{{inviteKey}}</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          {{#if description}}
+          Beschreibung:<br />
+          {{description}}
+          <br />
+          {{/if}}
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="5" style="text-align: center">
+          <br />
+          <a class="btn btn-conrad btn-wide"
+            href="https://dashboard.conradconnect.de/marketplace/service/CC-MYD-ACT-4c8bf2a0-be72-11e9-a649-575c9101f1f1">Zum Wettbewerb</a>
+          <br />
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="5">
+          <hr />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center">
+          <br />
+          Falls Sie keinen Conrad Connect Account besitzen, melden sie sich KOSTENLOS an. Drücken Sie einfach den anmelden Button:
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <table align="center">
+            <tr>
+              <td width="33%" align="center">
+                <img
+                  src="{{staticUrl}}images/mailing_sign_up.png"
+                  style="width:50%; max-width:150px;" alt="Sign up">
+              </td>
+              <td width="33%" align="center">
+                <img
+                  src="{{staticUrl}}images/mailing_connect_fitness_tracker.png"
+                  style="width:50%; max-width:150px;" alt="Connect a tracker">
+              </td>
+              <td width="33%" align="center"><img
+                  src="{{staticUrl}}images/mailing_subscribe.png"
+                  style="width:50%; max-width:150px;" alt="Subscribe the fitness service"></td>
+            </tr>
+            <tr>
+              <td align="center">
+                <b>Kostenlose Anmeldung</b>
+              </td>
+              <td align="center">
+                <b>Fitnesstracker verbinden</b>
+              </td>
+              <td align="center">
+                <b>An dem Fitness Wettbewerb teilnehmen</b>
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                Machen Sie sich bereit für den Wettbewerb mit einem Conrad Connect Account.
+              </td>
+              <td align="center">
+                Der Wettbewerb funktioniert mit verschiedenen Geräten wie beispielsweise Garmin, Fitbit oder Google Fit.
+              </td>
+              <td align="center">
+                Seien Sie aktiver als Ihre Mitstreiter! Sie können an mehreren Wettbewerben zeitgleichen teilnehmen.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align: center">
+          <br />
+          <a class="btn btn-register btn-wide" href="https://www.conradconnect.com/de/register">Anmelden</a>
+        </td>
+      </tr>
+
+
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                <p>
+                  Wir wünschen Ihnen viel Spaß und Erfolg in den Wettbewerben!
+                </p>
+                <p>
+                  <br>
+                  Viele Grüße
+                  <br>
+                  Das Conrad Connect Team
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

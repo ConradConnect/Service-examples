@@ -1,0 +1,77 @@
+<style>
+	@media (min-width: 600px) {
+		.start-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-gap: 10px;
+			padding: 20px;
+		}
+	}
+
+	@media (max-width: 599px) {
+		.start-grid {
+			text-align: center;
+			display: block;
+		}
+
+		.start-grid>*:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 10px;
+		}
+	}
+
+	.start-grid-item .headline {
+		font-size: 28px;
+		line-height: 32px;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+</style>
+
+
+<mdc-service-layout>
+	<div slot="content">
+	</div>
+
+	<div slot="free-space" class="free-space-center-wrapper">
+
+		<div class="start-grid">
+			<div class="start-grid-item">
+				<img src="static/images/fc_track_your_fitness.png" alt="Fitness Tracker"/>
+				<div class="headline">
+					{{start-track-headline}}
+				</div>
+				{{start-track-text}}
+			</div>
+			<div class="start-grid-item">
+				<img src="static/images/fc_join_competitions.png" alt="Join competition"/>
+				<div class="headline">
+					{{start-competition-headline}}
+				</div>
+				{{start-competition-text}}
+			</div>
+			<div class="start-grid-item">
+				<img src="static/images/fc_beat_the_competitors.png" alt="Beat the competitors"/>
+				<div class="headline">
+					{{start-beat-headline}}
+				</div>
+				{{start-beat-text}}
+			</div>
+		</div>
+
+	</div>
+	
+	<div slot="footer">
+		<div class="button-wrapper">
+			<mdc-service-page-navigation page="closeWindow" class="button50">
+				<mdc-button type="gray" label="{{buttons-close}}"></mdc-button>
+			</mdc-service-page-navigation>
+
+			<mdc-service-page-navigation page="settingsView" class="button50">
+				<mdc-button type="next" label="{{start-go-to-config}}"></mdc-button>
+			</mdc-service-page-navigation>
+		</div>
+	</div>
+</mdc-service-layout>

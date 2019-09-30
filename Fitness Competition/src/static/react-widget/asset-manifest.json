@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "./static/react-widget/static/css/main.562ec7c7.chunk.css",
+    "main.js": "./static/react-widget/static/js/main.1198e08f.chunk.js",
+    "main.js.map": "./static/react-widget/static/js/main.1198e08f.chunk.js.map",
+    "runtime~main.js": "./static/react-widget/static/js/runtime~main.4348bf22.js",
+    "runtime~main.js.map": "./static/react-widget/static/js/runtime~main.4348bf22.js.map",
+    "static/css/2.5388c809.chunk.css": "./static/react-widget/static/css/2.5388c809.chunk.css",
+    "static/js/2.48ba8153.chunk.js": "./static/react-widget/static/js/2.48ba8153.chunk.js",
+    "static/js/2.48ba8153.chunk.js.map": "./static/react-widget/static/js/2.48ba8153.chunk.js.map",
+    "index.html": "./static/react-widget/index.html",
+    "precache-manifest.b4559ffd1616e84009ce794777a85c58.js": "./static/react-widget/precache-manifest.b4559ffd1616e84009ce794777a85c58.js",
+    "service-worker.js": "./static/react-widget/service-worker.js",
+    "static/css/2.5388c809.chunk.css.map": "./static/react-widget/static/css/2.5388c809.chunk.css.map",
+    "static/css/main.562ec7c7.chunk.css.map": "./static/react-widget/static/css/main.562ec7c7.chunk.css.map",
+    "static/media/semantic.min.css": "./static/react-widget/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/ic_medal_bronze.4ac58a03.svg": "./static/react-widget/static/media/ic_medal_bronze.4ac58a03.svg",
+    "static/media/ic_medal_gold.4cf64d81.svg": "./static/react-widget/static/media/ic_medal_gold.4cf64d81.svg",
+    "static/media/ic_medal_silver.787885fc.svg": "./static/react-widget/static/media/ic_medal_silver.787885fc.svg",
+    "static/media/index.css": "./static/react-widget/static/media/lato-latin-900italic.bd86aaa7.woff2",
+    "static/media/run_man.66f12fbe.svg": "./static/react-widget/static/media/run_man.66f12fbe.svg",
+    "widget.html": "./static/react-widget/widget.html"
+  }
+}

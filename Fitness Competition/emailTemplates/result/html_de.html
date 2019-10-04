@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xht=
+ml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Ihr Fitness Wettbewerb Ergebnis</title>
+
+  <style type="text/css">
+    .invoice-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 16px;
+      line-height: 24px;
+      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      color: #555;
+    }
+
+    .invoice-box table {
+      width: 100%;
+      line-height: inherit;
+      text-align: left;
+    }
+
+    .invoice-box table td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .invoice-box table tr.top table td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+      font-size: 45px;
+      line-height: 45px;
+      color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+      padding-bottom: 40px;
+      padding-top: 20px;
+    }
+
+    .invoice-box .divider {
+      margin-top: 150px;
+    }
+
+    .invoice-box table tr.disclaimer table td {
+      font-size: 12px;
+      color: lightgray;
+      padding-bottom: 20px;
+      padding-top: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+      padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+      border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+
+    .invoice-box table tr.total td:nth-child(3) {
+      border-top: 2px solid #eee;
+      font-weight: bold;
+    }
+
+    tr.footer td {
+      background: #eee;
+      border-top: 1px solid #ddd;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      .invoice-box table tr.disclaimer table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+    }
+
+    .rtl {
+      direction: rtl;
+      font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+
+    .rtl table {
+      text-align: right;
+    }
+
+    .rtl table tr td:nth-child(2) {
+      text-align: left;
+    }
+
+    .btn {
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 400;
+      color: #212529;
+      text-align: center;
+      vertical-align: middle;
+      background-color: transparent;
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    a.btn-conrad {
+      color: #fffffe !important;
+      background-color: #0098dd;
+      border-color: #0098dd;
+      text-decoration: none;
+    }
+
+    a.btn-register {
+      color: #fffffe !important;
+      border-color: #00cd6f;
+      text-decoration: none;
+      background-color: #00cd6f;
+    }
+
+    .btn.btn-wide {
+      width: 350px;
+    }
+
+    .invite-key {
+      background-color: rgb(223, 223, 223);
+      padding: 10px;
+      font-size: 24px;
+    }
+
+    .result {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .next-competition {
+      font-weight: bold;
+      font-size: 20px;
+      color: rgb(98, 98, 98);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <img
+                  src="{{staticUrl}}images/CCLogo.png"
+                  style="width:100%; max-width:300px;" alt="Conrad Connect">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <img
+                  src="{{staticUrl}}images/fc_logo.png"
+                  style="width:100%; max-width:300px;" alt="Fitness Wettbewerb">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                Hallo <b>{{personName}}</b>,
+                <br><br>
+                der Wettbewerb <b>{{competitionName}}</b>, erstellt durch {{competitionAdminName}}, ist beendet. Ihr finaler Platz ist:
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <p style="text-align: center">
+            <span class="result">#{{place}}</span>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          Dies sind die Ergebnisse aller Teilnehmer:<br /><br />
+          <table>
+            {{#each resultArray}}
+            <tr>
+              <td width="50px">{{place}}</td>
+              <td width="250px">{{name}}</td>
+              <td><b>{{steps}}</b></td>
+            </tr>
+            {{/each}}
+          </table>
+          <br />
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="5" style="text-align: center">
+          <span class="next-competition">Starten Sie Ihren nächsten Wettbewerb:</span>
+          <br />
+          <br />
+          <a class="btn btn-conrad btn-wide"
+            href="https://dashboard.conradconnect.de/marketplace/service/CC-MYD-ACT-4c8bf2a0-be72-11e9-a649-575c9101f1f1">Jetzt starten!</a>
+          <br />
+        </td>
+      </tr>
+
+
+
+      <tr class="information">
+        <td colspan="5">
+          <table>
+            <tr>
+              <td>
+                <p>
+                  Wir wünschen Ihnen viel Spaß in den kommenden Wettbewerben!
+                </p>
+                <p>
+                  <br>
+                  Viele Grüße
+                  <br>
+                  Das Conrad Connect Team
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

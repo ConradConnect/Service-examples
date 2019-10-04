@@ -1,0 +1,180 @@
+<style>
+	@media (min-width: 600px) {
+		.detailGrid {
+			display: grid;
+			margin-top: 20px;
+			grid-gap: 20px;
+			grid-template-columns: 1fr 1fr 2fr;
+		}
+
+		.bigRight {
+			grid-row: 1 / 5;
+			grid-column: 3;
+		}
+
+	}
+
+	@media (max-width: 599px) {
+		.detailGrid {
+			display: grid;
+			margin-top: 20px;
+			grid-gap: 20px;
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.bigRight {
+			grid-row: 4;
+			grid-column: 1;
+		}
+
+	}
+
+	.spanFirstTwo {
+		grid-column: 1 / span 2;
+	}
+
+
+	.col1 {
+		grid-column: 1;
+	}
+
+	.col2 {
+		grid-column: 2;
+	}
+
+	.competitorNumber {
+		color: #9e9e9e;
+	}
+
+	.competitorList {
+		list-style: none;
+		padding: 0;
+	}
+
+	.inviteButton {
+		display: inline-block;
+		margin-top: 20px;
+	}
+
+	.noPadding {
+		padding: 0px;
+	}
+</style>
+
+<mdc-service-layout>
+	<div slot="content">
+		<div class="pageTitle">
+			{{details-title}}
+		</div>
+		<div class="pageDescription">
+			{{details-description}}
+		</div>
+
+		<div class="detailGrid">
+			<div class="spanFirstTwo">
+				{{details-name}}
+				<br/>
+				<%=competitionName%>
+			</div>
+				<div class="col1">
+					{{global-starts}}: <br/>
+					<mdc-datetime-display date-time="<%=start%>">
+					</mdc-datetime-display>
+				</div>
+				<div class="col2">
+					{{global-ends}}: <br/>
+					<mdc-datetime-display date-time="<%=end%>">
+					</mdc-datetime-display>
+				</div>
+				<div class="spanFirstTwo">
+					{{details-description}}<br/><%=description%>
+				</div>
+					<div class="bigRight">
+						{{details-competitiors}}: <span class="competitorNumber">(<%=personNames.length%>)</span><br/>
+						<ul class="competitorList">
+							<%=#each personNames%>
+							<li><%=this%></li>
+							<%=/each%>
+						</ul>
+					</div>
+					<div class="spanFirstTwo"">
+						<%=#if isAdmin%>
+						<mdc-form endpoint="inviteUser" data-id="<%=id%>">
+						<mdc-input-list label="{{create-invite-email-label}}" name="emails" delimiter=" "
+							class="create-email-list" max-list-height="90px">
+						</mdc-input-list>
+
+						<mdc-form-success>
+							{{invite-success-message}}
+						</mdc-form-success>
+						<mdc-form-error>
+							{{invite-default-error}}
+						</mdc-form-error>
+						<mdc-form-submit class="inviteButton">
+							<mdc-button type="blue" label="{{invite-submit}}"></mdc-button>
+						</mdc-form-submit>
+						</mdc-form>
+						<%=/if%>
+					</div>
+				</div>
+
+			</div>
+
+			<div slot="footer">
+
+				<%=#if isAdmin%>
+				<mdc-form endpoint="deleteCompetition" data-id="<%=id%>">
+					<mdc-confirm-dialog header="{{delete-confirmation-header}}"
+						text-cancel="{{delete-confirmation-cancel}}" text-ok="{{delete-confirmation-ok}}"
+						button-type-cancel="next" button-type-ok="red">
+						{{delete-confirmation-message}}
+					</mdc-confirm-dialog>
+					<mdc-form-success redirect="mainView">
+						{{delete-success-message}}
+					</mdc-form-success>
+					<mdc-form-error>
+						{{delete-default-error}}
+					</mdc-form-error>
+					<mdc-form-submitting>
+						{{delete-is-submitting}}
+					</mdc-form-submitting>
+					<div class="button-wrapper noPadding">
+						<mdc-form-submit class="button100">
+							<mdc-button type="red" label="{{delete-submit}}"></mdc-button>
+						</mdc-form-submit>
+					</div>
+				</mdc-form>
+				<%=/if%>
+
+				<%=#unless isAdmin%>
+				<mdc-form endpoint="leaveCompetition" data-id="<%=id%>">
+					<mdc-confirm-dialog header="{{leave-confirmation-header}}"
+						text-cancel="{{leave-confirmation-cancel}}" text-ok="{{leave-confirmation-ok}}"
+						button-type-cancel="next" button-type-ok="red">
+						{{leave-confirmation-message}}
+					</mdc-confirm-dialog>
+					<mdc-form-success redirect="mainView">
+						{{leave-success-message}}
+					</mdc-form-success>
+					<mdc-form-error>
+						{{leave-default-error}}
+					</mdc-form-error>
+					<mdc-form-submitting>
+						{{leave-is-submitting}}
+					</mdc-form-submitting>
+					<div class="button-wrapper noPadding">
+						<mdc-form-submit class="button100">
+							<mdc-button type="blue" label="{{leave-submit}}"></mdc-button>
+						</mdc-form-submit>
+					</div>
+				</mdc-form>
+				<%=/unless%>
+
+				<div class="button-wrapper">
+					<mdc-service-page-navigation page="mainView" class="button100">
+						<mdc-button type="next" label="{{details-back}}"></mdc-button>
+					</mdc-service-page-navigation>
+				</div>
+
+			</div>
+</mdc-service-layout>

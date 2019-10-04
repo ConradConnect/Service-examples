@@ -1,0 +1,47 @@
+<style>
+	.settingsUsername,
+	.settingsDevice {
+		margin-top: 20px;
+	}
+</style>
+
+<mdc-form validate>
+	<mdc-service-layout>
+		<div slot="content">
+			<div class="pageTitle">
+				{{settings-title}}
+			</div>
+			<div class="pageDescription">
+				{{settings-description}}
+			</div>
+
+			<div class="settingsUsername">
+				<mdc-input name="personName" type="text" label="{{settings-username}}" placeholder-label="true"
+					persist="rw">
+				</mdc-input>
+			</div>
+
+			<div class="settingsDevice">
+				<mdc-device-selection required error-message="{{settings-default-error}}" select-if-only-one radio name="deviceId" properties="['steps']"
+					label="{{settings-device-label}}" no-device-error="{{global-nodevice-error}}" persist="rw"
+					class="create-device-selection" loading-text="{{devices-loading}}">
+				</mdc-device-selection>
+			</div>
+
+			<mdc-form-success redirect="settingsDoneView">
+			</mdc-form-success>
+
+			<mdc-form-error>
+				{{settings-default-error}}
+			</mdc-form-error>
+
+		</div>
+		<div slot="footer">
+			<div class="button-wrapper">
+				<mdc-form-submit class="button100">
+					<mdc-button type="next" label="{{settings-setup}}"></mdc-button>
+				</mdc-form-submit>
+			</div>
+		</div>
+	</mdc-service-layout>
+</mdc-form>

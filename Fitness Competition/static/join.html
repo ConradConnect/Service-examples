@@ -1,0 +1,84 @@
+<style>
+	@media (min-width: 600px) {
+		.join-grid {
+			display: grid;
+			grid-template-columns: 2fr 2fr 1fr;
+			grid-gap: 20px;
+			margin-top: 20px;
+		}
+	}
+
+	@media (max-width: 599px) {
+		.join-grid {
+			display: block;
+		}
+
+		.join-grid>*:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 10px;
+		}
+	}
+
+	.join-device-selection {
+		grid-column: 1 / span 3;
+	}
+</style>
+<mdc-form endpoint="joinCompetitionByKey" validate>
+	<mdc-service-layout>
+		<div slot="content">
+			<div class="pageTitle">
+				{{join-title}}
+			</div>
+			<div class="pageDescription">
+				{{join-description}}
+			</div>
+
+			<div class="join-grid">
+
+				<mdc-input required error-message="{{join-name-errorMessage}}" name="personName" persist="r" type="text"
+					label="{{create-admin-label}}" placeholder-label>
+				</mdc-input>
+
+				<div>
+					<mdc-input required error-message="{{join-key-errorMessage}}" name="key" type="text"
+						label="{{join-label-key}}"></mdc-input>
+					<div>{{join-label-key-description}}</div>
+				</div>
+
+				<div></div>
+				<mdc-device-selection persist="r" radio name="deviceId" label="{{settings-device-label}}"
+					no-device-error="{{global-nodevice-error}}" properties="['steps']" class="join-device-selection"
+					loading-text="{{devices-loading}}">
+				</mdc-device-selection>
+			</div>
+
+			<mdc-form-success redirect="joinDoneView">
+			</mdc-form-success>
+
+			<mdc-form-error>
+				<mdc-form-error-translate key="key not found">
+					{{join-key-error}}
+				</mdc-form-error-translate>
+				<mdc-form-error-translate key="competition ended">
+					{{join-competition-ended-error}}
+				</mdc-form-error-translate>
+				{{join-default-error}}
+			</mdc-form-error>
+
+		</div>
+
+		<div slot="footer">
+			<div class="button-wrapper">
+				<mdc-service-page-navigation page="mainView" class="button50">
+					<mdc-button type="gray" label="{{create-back}}"></mdc-button>
+				</mdc-service-page-navigation>
+
+				<mdc-form-submit class="button50">
+					<mdc-button type="next" label="{{join-submit}}"></mdc-button>
+				</mdc-form-submit>
+			</div>
+		</div>
+	</mdc-service-layout>
+</mdc-form>

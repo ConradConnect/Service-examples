@@ -1,0 +1,27 @@
+<mdc-service-layout>
+	<div slot="content">
+		<div class="pageTitle">
+			{{joinDone-title}}
+		</div>
+		<div class="pageDescription">
+			{{joinDone-description}}
+		</div>
+
+	</div>
+
+	<div slot="free-space" class="free-space-center-wrapper">
+
+		<div class="showSuccessImage">
+			<img src="static/images/fc_confirmation.png" width="200px" alt="Success" />
+		</div>
+
+	</div>
+	
+	<div slot="footer">
+		<div class="button-wrapper">
+			<mdc-service-page-navigation page="mainView" class="button100">
+				<mdc-button type="next" label="{{joinDone-go-to-main}}"></mdc-button>
+			</mdc-service-page-navigation>
+		</div>
+	</div>
+</mdc-service-layout>
